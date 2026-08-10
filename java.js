@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("input");
 
-    console.log(input); // test if it works
+    console.log(input); 
 });
 const suggestions = document.getElementById("suggestions");
 const boxes = document.querySelectorAll(".covers h2");
@@ -52,9 +52,6 @@ function resetView() {
         box.parentElement.classList.remove("active", "blur");
     });
 }
-
-
-
 
 
 
