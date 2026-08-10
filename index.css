@@ -101,11 +101,11 @@ body::-webkit-scrollbar {
 }
 
 .micIcon path {
-  fill: rgb(255, 81, 0);
+  fill: #00d8ff;
 }
 
 .micButton:hover {
-  background-color: rgb(255, 230, 230);
+ background-color: rgba(0, 216, 255, 0.15);
 }
 
 .title {
@@ -156,17 +156,17 @@ body::-webkit-scrollbar {
   top: 0;
   height: 100%;
   width: 0;
-  background: linear-gradient(90deg, #00509c, #002c5f);
+  background: linear-gradient(90deg, #1e1b4b, #312e81);
   transition: width 0.1s ease;
   z-index: -1;
 }
 
+
 #side-bar div:hover {
-  color: #ffffff;
-  border-left-color: #004e5e;
-  transform: translateX(5px);
-  background: rgba(0, 78, 94, 0.2);
-  box-shadow: inset 5px 0 10px rgba(0, 78, 94, 0.3);
+color: #ffffff;
+  border-left-color: #00d8ff;
+  background: rgba(0, 216, 255, 0.08);
+  box-shadow: inset 5px 0 10px rgba(0, 216, 255, 0.15);
 }
 
 #side-bar div:hover::before {
@@ -182,15 +182,15 @@ body::-webkit-scrollbar {
 }
 
 #side-bar div.active {
-  color: #ffffff;
-  border-left-color: #00b3ff;
-  background: rgba(0, 179, 255, 0.15);
-  box-shadow: inset 5px 0 15px rgba(0, 179, 255, 0.3);
+color: #ffffff;
+  border-left-color: #00d8ff;
+  background: rgba(0, 216, 255, 0.12);
+  box-shadow: inset 5px 0 15px rgba(0, 216, 255, 0.25);
 }
 
 #side-bar div.active::before {
   width: 100%;
-  background: linear-gradient(90deg, #00b3ff, #004e5e);
+background: linear-gradient(90deg, #00d8ff, #4f46e5);
 }
 
 /* Main Content & Card Container */
@@ -277,27 +277,27 @@ body::-webkit-scrollbar {
   top: 0;
   left: 50px;
   width: 50%;
-  height: 100%;
+  height: 98%;
   border-radius: 8px;
-  transform: skewX(15deg);
+  transform: skewX(10deg);
   transition: 0.5s;
 }
 
-.box::before, .box::after { background: linear-gradient(315deg, #0008ff, #00b3ff); }
-.box_01::before, .box_01::after { background: linear-gradient(315deg, #ffffff, #020202); }
-.box_02::before, .box_02::after { background: linear-gradient(315deg, #cdaaff, #005f72); }
-.box_03::before, .box_03::after { background: linear-gradient(315deg, #22cd00, #ff00b7); }
-.box_04::before, .box_04::after { background: linear-gradient(315deg, #ff00b3, #0041cd); }
-.box_05::before, .box_05::after { background: linear-gradient(315deg, #fffdbe, #ff8400); }
-.box_06::before, .box_06::after { background: linear-gradient(315deg, #fffdbe, #ff8400); }
-.box_07::before, .box_07::after { background: linear-gradient(315deg, #ff6f00, #ffdab2); }
+.box::before, .box::after { background: linear-gradient(315deg, #2563eb, #00d8ff); }
+.box_01::before, .box_01::after { background: linear-gradient(315deg, #4f46e5, #06b6d4); }
+.box_02::before, .box_02::after { background: linear-gradient(315deg, #7c3aed, #0284c7); }
+.box_03::before, .box_03::after { background: linear-gradient(315deg, #059669, #00d8ff); }
+.box_04::before, .box_04::after { background: linear-gradient(315deg, #c026d3, #4f46e5); }
+.box_05::before, .box_05::after { background: linear-gradient(315deg, #db2777, #7c3aed); }
+.box_06::before, .box_06::after { background: linear-gradient(315deg, #feee5b, #ffbd4c); }
+.box_07::before, .box_07::after { background: linear-gradient(315deg, #9333ea, #f43f5e); }
 
 .box::after, .box_01::after, .box_02::after, .box_03::after,
 .box_04::after, .box_05::after, .box_06::after, .box_07::after {
-  filter: blur(30px);
+  filter: blur(27px);
 }
 
-/* Restored Hover Expand Transform */
+
 .box:hover::before, .box:hover::after,
 .box_01:hover::before, .box_01:hover::after,
 .box_02:hover::before, .box_02:hover::after,
@@ -309,7 +309,7 @@ body::-webkit-scrollbar {
   transform: skewX(0deg) scaleX(1.3);
 }
 
-/* Restored Original Card Content Dimensions */
+
 .box .content,
 .box_01 .content_01,
 .box_02 .content_02,
@@ -319,20 +319,22 @@ body::-webkit-scrollbar {
 .box_06 .content_06,
 .box_07 .content_07 {
   position: relative;
-  width: 280px;
-  height: 360px;
+  width: 340px;
+  height: 420px;
   padding: 30px 50px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   z-index: 1;
-  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   box-sizing: border-box;
+  color: #f1f5f9;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .box .content {
@@ -378,20 +380,20 @@ body::-webkit-scrollbar {
 }
 
 .box_06 .content_06 {
-  background-image: url(cd61387f1ab326378df100e0cd503b84.webp);
+  background-image: url(artworks-000036562262-5bjf2f-t1080x1080.jpg);
   background-size: 320px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .box_07 .content_07 {
-  background-image: url(cd61387f1ab326378df100e0cd503b84.webp);
+  background-image: url(9506241b75516d00d0c6a01c4cd75253.jpg);
   background-size: 320px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/* Card Text Styling */
+
 .box .content #text_0,
 .box_01 .content_01 #text_01,
 .box_02 .content_02 #text_02,
@@ -469,7 +471,7 @@ body::-webkit-scrollbar {
 
 /* Fixed Bottom Music Player */
 .music-player {
-  background-color: #568cb9;
+
   width: calc(100% - 304px);
   height: 120px;
   border-radius: 10px 0 0 0;
@@ -482,6 +484,12 @@ body::-webkit-scrollbar {
   gap: 20px;
   z-index: 9999;
   box-sizing: border-box;
+
+
+
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cover-name {
@@ -498,15 +506,17 @@ body::-webkit-scrollbar {
   padding: 8px 15px;
   border: none;
   border-radius: 8px;
-  background-color: #005f9e;
-  color: white;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
+  background-color: #00d8ff;
+  color: #0f172a;
+  font-weight: 600;
 }
 
 .button-play:hover {
-  background: #2e0079;
+background: #38bdf8;
+  box-shadow: 0 0 12px rgba(0, 216, 255, 0.4);
 }
 
 input[type="range"] {
@@ -528,10 +538,13 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 14px;
   width: 14px;
-  background: #00b3ff;
   border-radius: 50%;
   margin-top: -5px;
   cursor: pointer;
+
+
+  background: #00d8ff;
+  box-shadow: 0 0 8px #00d8ff;
 }
 
 /* ==========================================================================
