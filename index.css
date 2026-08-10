@@ -1,4 +1,3 @@
-
 body {
   background-color: black;
   height: auto;
@@ -11,7 +10,6 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
-
 
 #menu {
   width: 100%;
@@ -32,7 +30,7 @@ body::-webkit-scrollbar {
 #menu a {
   text-decoration: none;
   letter-spacing: 3px;
-  font-size: 24px;
+  font-size: 26px;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 500;
   color: #faf9f9;
@@ -44,11 +42,11 @@ body::-webkit-scrollbar {
   transform: scale(1.05);
 }
 
-
-#input, #InputContainer {
-  margin-top: 0;
+/* Search Bar */
+#InputContainer, #input {
+  margin-top: 0px;
   padding: 12px 20px 12px 45px;
-  font-size: 18px;
+  font-size: 19px;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 500;
   width: 100%;
@@ -90,7 +88,7 @@ body::-webkit-scrollbar {
 }
 
 .micButton {
-  padding: 0 15px 0 12px;
+  padding: 0px 15px 0px 12px;
   border: none;
   background-color: transparent;
   height: 40px;
@@ -118,21 +116,20 @@ body::-webkit-scrollbar {
   margin-top: 0;
 }
 
-
+/* Sidebar */
 #side-bar {
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin-top: 20px;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  padding: 0;
+  width: 280px;
   position: fixed;
   top: 80px;
   left: 0;
   bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  padding: 0;
   z-index: 900;
 }
 
@@ -196,11 +193,11 @@ body::-webkit-scrollbar {
   background: linear-gradient(90deg, #00b3ff, #004e5e);
 }
 
-
+/* Main Content & Card Container */
 .main-content {
   position: relative;
   margin-top: 20px;
-  margin-left: 280px;
+  margin-left: 300px;
   padding: 20px 40px 160px 20px;
   min-height: calc(100vh - 100px);
   box-sizing: border-box;
@@ -210,23 +207,31 @@ body::-webkit-scrollbar {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  justify-content: flex-start;
+  position: relative;
   width: 100%;
 }
 
-
-.box, .box_01, .box_02, .box_03, .box_04, .box_05, .box_06, .box_07 {
+/* Restored Original Card Dimensions */
+.box,
+.box_01,
+.box_02,
+.box_03,
+.box_04,
+.box_05,
+.box_06,
+.box_07 {
   position: relative;
-  width: 280px;
-  height: 380px;
+  width: 320px;
+  height: 420px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s;
   z-index: 1;
-  margin: 0;
+  margin: 0 !important;
 }
 
+/* Hover Blur Effect on Siblings */
 .covers:hover .box:not(:hover),
 .covers:hover .box_01:not(:hover),
 .covers:hover .box_02:not(:hover),
@@ -250,19 +255,28 @@ body::-webkit-scrollbar {
   z-index: 100;
 }
 
-.box::before, .box::after,
-.box_01::before, .box_01::after,
-.box_02::before, .box_02::after,
-.box_03::before, .box_03::after,
-.box_04::before, .box_04::after,
-.box_05::before, .box_05::after,
-.box_06::before, .box_06::after,
-.box_07::before, .box_07::after {
+/* Restored Skew Background Pseudo-elements */
+.box::before,
+.box::after,
+.box_01::before,
+.box_01::after,
+.box_02::before,
+.box_02::after,
+.box_03::before,
+.box_03::after,
+.box_04::before,
+.box_04::after,
+.box_05::before,
+.box_05::after,
+.box_06::before,
+.box_06::after,
+.box_07::before,
+.box_07::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 20px;
-  width: 70%;
+  left: 50px;
+  width: 50%;
   height: 100%;
   border-radius: 8px;
   transform: skewX(15deg);
@@ -278,11 +292,12 @@ body::-webkit-scrollbar {
 .box_06::before, .box_06::after { background: linear-gradient(315deg, #fffdbe, #ff8400); }
 .box_07::before, .box_07::after { background: linear-gradient(315deg, #ff6f00, #ffdab2); }
 
-.box::after, .box_01::after, .box_02::after, .box_03::after, 
+.box::after, .box_01::after, .box_02::after, .box_03::after,
 .box_04::after, .box_05::after, .box_06::after, .box_07::after {
   filter: blur(30px);
 }
 
+/* Restored Hover Expand Transform */
 .box:hover::before, .box:hover::after,
 .box_01:hover::before, .box_01:hover::after,
 .box_02:hover::before, .box_02:hover::after,
@@ -291,15 +306,22 @@ body::-webkit-scrollbar {
 .box_05:hover::before, .box_05:hover::after,
 .box_06:hover::before, .box_06:hover::after,
 .box_07:hover::before, .box_07:hover::after {
-  transform: skewX(0deg) scaleX(1.1);
+  transform: skewX(0deg) scaleX(1.3);
 }
 
-.box .content, .box_01 .content_01, .box_02 .content_02, .box_03 .content_03,
-.box_04 .content_04, .box_05 .content_05, .box_06 .content_06, .box_07 .content_07 {
+/* Restored Original Card Content Dimensions */
+.box .content,
+.box_01 .content_01,
+.box_02 .content_02,
+.box_03 .content_03,
+.box_04 .content_04,
+.box_05 .content_05,
+.box_06 .content_06,
+.box_07 .content_07 {
   position: relative;
-  width: 250px;
-  height: 330px;
-  padding: 20px;
+  width: 280px;
+  height: 360px;
+  padding: 30px 50px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -313,20 +335,72 @@ body::-webkit-scrollbar {
   box-sizing: border-box;
 }
 
-.box .content { background: url(3c72c40a6ed48cf0138557c2d0f2d5d2.webp) center/contain no-repeat; }
-.box_01 .content_01 { background: url(Aphex\ to\ Z_187.webp) center/cover no-repeat; }
-.box_02 .content_02 { background: url(8920e2fb19ad2306d6237aae67f5f330.webp) center/contain no-repeat; }
-.box_03 .content_03 { background: url(Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery-570x570_c.webp) center/cover no-repeat; }
-.box_04 .content_04 { background: url(194b90dfd40b420f7484dc866fa3a925.webp) center/cover no-repeat; }
-.box_05 .content_05 { background: url(cd61387f1ab326378df100e0cd503b84.webp) center/cover no-repeat; }
-.box_06 .content_06 { background: url(cd61387f1ab326378df100e0cd503b84.webp) center/cover no-repeat; }
-.box_07 .content_07 { background: url(cd61387f1ab326378df100e0cd503b84.webp) center/cover no-repeat; }
+.box .content {
+  background-image: url(3c72c40a6ed48cf0138557c2d0f2d5d2.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
+.box_01 .content_01 {
+  background-image: url(Aphex\ to\ Z_187.webp);
+  background-size: 520px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-.box .content #text_0, .box_01 .content_01 #text_01, .box_02 .content_02 #text_02,
-.box_03 .content_03 #text_03, .box_04 .content_04 #text_04, .box_05 .content_05 #text_05,
-.box_06 .content_06 #text_06, .box_07 .content_07 #text_07 {
-  font-size: 18px;
+.box_02 .content_02 {
+  background-image: url(8920e2fb19ad2306d6237aae67f5f330.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box_03 .content_03 {
+  background-image: url(Pink-Floyd_Dark-Side-Of-The-Moon_copyright_pink-floyd-music-Ltd_Browse-Gallery-570x570_c.webp);
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box_04 .content_04 {
+  background-image: url(194b90dfd40b420f7484dc866fa3a925.webp);
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box_05 .content_05 {
+  background-image: url(cd61387f1ab326378df100e0cd503b84.webp);
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box_06 .content_06 {
+  background-image: url(cd61387f1ab326378df100e0cd503b84.webp);
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.box_07 .content_07 {
+  background-image: url(cd61387f1ab326378df100e0cd503b84.webp);
+  background-size: 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Card Text Styling */
+.box .content #text_0,
+.box_01 .content_01 #text_01,
+.box_02 .content_02 #text_02,
+.box_03 .content_03 #text_03,
+.box_04 .content_04 #text_04,
+.box_05 .content_05 #text_05,
+.box_06 .content_06 #text_06,
+.box_07 .content_07 #text_07 {
+  font-size: 20px;
   font-family: 'Courier New', Courier, monospace;
   margin-bottom: 10px;
 }
@@ -340,16 +414,15 @@ body::-webkit-scrollbar {
 .box_06 .content_06 #text_06 { color: #000; }
 .box_07 .content_07 #text_07 { color: #000; }
 
-
+/* Suggestions Menu */
 #suggestions {
   list-style: none;
   padding: 0;
   margin-top: 5px;
   background: rgb(248, 249, 249);
-  width: 100%;
-  max-width: 300px;
+  width: 300px;
   position: absolute; 
-  font-size: 18px;
+  font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   z-index: 9999999;
   border-radius: 5px;
@@ -380,8 +453,8 @@ body::-webkit-scrollbar {
 }
 
 .container svg {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   fill: #545454;
   transition: 0.3s;
 }
@@ -394,37 +467,31 @@ body::-webkit-scrollbar {
   fill: #ffeb49;
 }
 
-
+/* Fixed Bottom Music Player */
 .music-player {
   background-color: #568cb9;
-  width: 100%;
-  height: 100px;
+  width: calc(100% - 304px);
+  height: 120px;
+  border-radius: 10px 0 0 0;
   padding: 10px 20px;
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 304px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+  gap: 20px;
   z-index: 9999;
-}
-
-.player-info {
-  display: flex;
-  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .cover-name {
-  font-size: 20px;
+  font-size: 29px;
   color: #fff;
-  margin: 0;
 }
 
 .song-name {
-  font-size: 14px;
+  font-size: 16px;
   color: #ccc;
-  margin: 0;
 }
 
 .button-play {
@@ -443,8 +510,7 @@ body::-webkit-scrollbar {
 }
 
 input[type="range"] {
-  width: 40%;
-  max-width: 300px;
+  width: 300px;
   height: 5px;
   background: #ccc;
   border-radius: 5px;
@@ -468,34 +534,24 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-/* MEDIA */
-
+/* ==========================================================================
+   Responsive Adaptations (Small Screens Only)
+   ========================================================================== */
 
 @media screen and (max-width: 1024px) {
   #side-bar {
-    width: 200px;
+    width: 220px;
   }
-
   .main-content {
-    margin-left: 210px;
+    margin-left: 240px;
   }
-
-  #input, #InputContainer {
-    width: 300px;
+  .music-player {
+    width: calc(100% - 220px);
+    left: 220px;
   }
 }
 
-/* Tablets (Max Width: 768px) */
 @media screen and (max-width: 768px) {
-  #menu {
-    padding: 0 20px;
-  }
-
-  #menu a {
-    font-size: 20px;
-  }
-
-  /* Transform Sidebar into Horizontal Scroll Top Bar */
   #side-bar {
     position: relative;
     top: 0;
@@ -504,8 +560,6 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: row;
     overflow-x: auto;
     white-space: nowrap;
-    margin: 0;
-    backdrop-filter: none;
   }
 
   #side-bar div {
@@ -519,7 +573,6 @@ input[type="range"]::-webkit-slider-thumb {
   #side-bar div:hover, #side-bar div.active {
     border-left-color: transparent;
     border-bottom-color: #00b3ff;
-    transform: none;
   }
 
   .main-content {
@@ -531,64 +584,16 @@ input[type="range"]::-webkit-slider-thumb {
     justify-content: center;
   }
 
-
   .music-player {
-    height: 90px;
-    gap: 10px;
-    padding: 10px;
-  }
-
-  .cover-name {
-    font-size: 16px;
-  }
-
-  .song-name {
-    font-size: 12px;
-  }
-
-  input[type="range"] {
-    width: 30%;
+    width: 100%;
+    left: 0;
+    border-radius: 0;
   }
 }
 
-/* Mobile Phones (Max Width: 480px) */
 @media screen and (max-width: 480px) {
-  #menu {
-    height: 60px;
-  }
-
-  #menu a {
-    font-size: 16px;
-    letter-spacing: 1px;
-  }
-
-  #input, #InputContainer {
-    max-width: 180px;
-    height: 40px;
-    font-size: 14px;
-    padding: 8px 12px 8px 30px;
-  }
-
+  /* Dynamic scale on small mobile screens to keep cards full size without breaking layout */
   .box, .box_01, .box_02, .box_03, .box_04, .box_05, .box_06, .box_07 {
-    width: 100%;
-    max-width: 300px;
-    height: 380px;
-  }
-
-  .music-player {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-    justify-content: center;
-  }
-
-  input[type="range"] {
-    width: 80%;
-    max-width: none;
-  }
-
-  .button-play {
-    padding: 5px 12px;
-    font-size: 14px;
+    transform: scale(0.9);
   }
 }
