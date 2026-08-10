@@ -1,6 +1,7 @@
 body {
   background-color: black;
-  height: 1500px;
+  height: auto;
+  width: auto;
 }
 body::-webkit-scrollbar{
   display:none;
@@ -8,15 +9,14 @@ body::-webkit-scrollbar{
 #menu{
   width:100%;
   height:80px;
-  background-color:#003867;
-  border-radius: 20px;
+
   padding: 0 60px;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-
+  border-bottom: 2px solid rgba(255, 254, 254, 0.701);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -24,11 +24,12 @@ body::-webkit-scrollbar{
 #menu a{
   text-decoration: none;
   letter-spacing: 3px;
-  font-size: 30px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #000;
-  margin-left: -29px;
-    transition: all 0.3s ease; /* smooth transition */
+  font-size: 26px;
+  font-family:'Courier New', Courier, monospace;
+  font-weight: 500;
+  color: #faf9f9;
+  margin-left:0;
+    transition: all 0.3s ease; 
 }
 #menu a:hover{
   color: #ffffff;
@@ -38,38 +39,57 @@ body::-webkit-scrollbar{
 /*!search bar*/
 
 
-.InputContainer {
-  height: 40px;
-  width: 350px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  padding-left: 15px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+#InputContainer{
+    margin-top: 0px;
+    padding: 12px 20px 12px 45px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 480px;
+    max-width: 90vw;
+    height: 52px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    background-color: #ffffff;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.input {
-  width: 190px;
-  height: 100%;
-  border: none;
-  outline: none;
-  font-size: 0.9em;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+#input:hover {
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-.labelforsearch {
-  cursor: text;
-  padding: 0px 30px;
+#input:focus {
+    border-color: #4C5FD5;
+    box-shadow: 0 0 0 3px rgba(76, 95, 213, 0.25), 0 6px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
 }
 
-.searchIcon {
-  margin-left: 120px;
-  width: 13px;
+#input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
 }
+
+#input {
+    margin-top: 0px;
+    padding: 12px 20px 12px 45px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 480px;
+    max-width: 90vw;
+    height: 52px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    background-color: #ffffff;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+
 
 .border {
   height: 40%;
@@ -119,26 +139,24 @@ body::-webkit-scrollbar{
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(145deg, #000000, #1a1a1a);
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  border-radius: 15px;
   margin-top: 20px;
   margin-left: -11px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
   overflow: hidden;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+
   padding: 0;
 
 }
 
 #side-bar div {
-  width: 100%;      /* Full width */
-  height: 55px;     /* Fixed height for each item */
+  width: 100%;    
+  height: 55px;    
   display: flex;
   align-items: center;
-  padding: 0 25px;  /* Horizontal padding only */
+  padding: 0 25px; 
   color: #e0e0e0;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -345,7 +363,7 @@ body::-webkit-scrollbar{
   transform: skewX(0deg) scaleX(1.3);
 }
 
-/* Content styling */
+
 .box .content,
 .box_01 .content_01,
 .box_02 .content_02,
@@ -524,119 +542,7 @@ body::-webkit-scrollbar{
 /*!sidebar player */
 
 
-.main {
-  background-color: rgb(0, 54, 72);
-  padding: 15px;
-  height: 580px;
-  width: 260px;
-  border-radius: 15px;
-  margin-top: -1096px;
-  margin-left: -5px;
-    position:absolute;
-}
 
-.loader {
-  display: flex;
-  flex-direction: row;
-  height: 4em;
-  width: 258px;
-  padding-left: 1em;
-  padding-right: 1em;
-  transform: rotate(180deg);
-  justify-content: right;
-  border-radius: 2px;
-  transition: .4s ease-in-out;
-  margin-left: -15px;
-}
-
-.loader:hover {
-  cursor: pointer;
-  background-color: #025f81;
-}
-
-.currentplaying {
-  display: flex;
-  margin: 1em;
-}
-
-.spotify {
-  width: 50px;
-  height: 50px;
-  margin-right: 0.6em;
-}
-
-.heading {
-  color: rgb(255, 255, 255);
-  font-size: 1.1em;
-  font-weight: bold;
-  align-self: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.loading {
-  display: flex;
-  margin-top: 1em;
-  margin-left: 0.3em;
-}
-
-.load {
-  width: 2px;
-  height: 33px;
-  background-color: limegreen;
-  animation: 1s move6 infinite;
-  border-radius: 5px;
-  margin: 0.1em;
-}
-
-.load:nth-child(1) {
-  animation-delay: 0.2s;
-}
-
-.load:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.load:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-.play {
-  position: relative;
-  left: 0.35em;
-  height: 1.6em;
-  width: 1.6em;
-  clip-path: polygon(50% 50%, 100% 50%, 75% 6.6%);
-  background-color: rgb(255, 255, 255);
-  transform: rotate(-90deg);
-  align-self: center;
-  margin-top: 0.7em;
-  justify-self: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.albumcover {
-  position: relative;
-  margin-right: 1em;
-  height: 40px;
-  width: 40px;
-  background-color: rgb(233, 232, 232);
-  align-self: center;
-  border-radius: 5px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.song {
-  position: relative;
-  transform: rotate(180deg);
-  margin-right: 1em;
-  color: rgb(255, 255, 255);
-  align-self: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.artist {
-  font-size: 0.6em;
-}
 
 @keyframes move6 {
   0% {
@@ -659,21 +565,21 @@ body::-webkit-scrollbar{
 
 /*? music player */
 .music-player{
-  background-color: #003c6e;
+  background-color: #568cb9;
   width: 100%;
   height: 120px;
   border-radius: 10px;
   padding: 10px;
   position: fixed;
   bottom: 6px;
-  left: 304px; /* ცენტრში გაწევა */
+  left: 304px;
   display: flex;
   align-items: center;
   gap: 20px;
   z-index: 9999;
 }
 
-/* ტექსტი */
+
 .cover-name{
   font-size: 29px;
   color: #fff;
@@ -703,7 +609,7 @@ body::-webkit-scrollbar{
   background: #2e0079;
 }
 
-/* 🎯 RANGE FIX (მთავარი ნაწილი) */
+
 input[type="range"] {
   width: 300px;
   height: 5px;
