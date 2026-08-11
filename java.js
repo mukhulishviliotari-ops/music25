@@ -83,4 +83,45 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // Simple track mapping (only add files you have in the project)
+    const trackMap = {
+        "Nirvana": "Nirvana - Come As You Are (Official Music Video).mp3",
+        "Aphex Twin": "",
+        "Radiohead": "",
+        "Pink Floyd": "",
+        "TV Girl": "",
+        "Muse": "",
+        "HRT": "",
+        "Tame Impala": ""
+    };
+
+    // Clicking a cover's title will try to load and play a mapped track
+    boxes.forEach(box => {
+        const name = box.textContent.trim();
+        const card = box.closest('[class*="box"]');
+        if (card) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+                const file = trackMap[name];
+                if (file) {
+                    audio.src = file;
+                    const coverNameEl = document.querySelector('.cover-name');
+                    const songNameEl = document.querySelector('.song-name');
+                    if (coverNameEl) coverNameEl.textContent = name;
+                    if (songNameEl) songNameEl.textContent = file.replace(/\.(mp3|wav|m4a)$/, '');
+                    audio.play().catch(() => {});
+                }
+            });
+        }
+    });
+
+    // Expose functions for the inline onclick handlers in the HTML
+    window.playMusic = () => {
+        if (audio) audio.play().catch(() => {});
+    };
+
+    window.pauseMusic = () => {
+        if (audio) audio.pause();
+    };
 });

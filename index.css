@@ -7,6 +7,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Enable smooth scroll for in-page navigation */
+html {
+  scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -43,7 +48,14 @@ body::-webkit-scrollbar {
 }
 
 /* Search Bar */
-#InputContainer, #input {
+.InputContainer {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 480px;
+}
+
+#input {
   margin-top: 0px;
   padding: 12px 20px 12px 45px;
   font-size: 19px;
@@ -422,8 +434,11 @@ background: linear-gradient(90deg, #00d8ff, #4f46e5);
   padding: 0;
   margin-top: 5px;
   background: rgb(248, 249, 249);
-  width: 300px;
+  width: 100%;
+  max-width: 480px;
   position: absolute; 
+  left: 0;
+  top: calc(100% + 6px);
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   z-index: 9999999;
