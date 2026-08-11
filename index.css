@@ -484,7 +484,6 @@ background: linear-gradient(90deg, #00d8ff, #4f46e5);
   fill: #ffeb49;
 }
 
-/* Fixed Bottom Music Player */
 .music-player {
 
   width: calc(100% - 304px);
@@ -562,9 +561,6 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 0 8px #00d8ff;
 }
 
-/* ==========================================================================
-   Responsive Adaptations (Small Screens Only)
-   ========================================================================== */
 
 @media screen and (max-width: 1024px) {
   #side-bar {
@@ -620,13 +616,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @media screen and (max-width: 480px) {
-  /* Dynamic scale on small mobile screens to keep cards full size without breaking layout */
   .box, .box_01, .box_02, .box_03, .box_04, .box_05, .box_06, .box_07 {
     transform: scale(0.9);
   }
 }
 
-/* Enhanced small-device adjustments */
 @media screen and (max-width: 420px) {
   #menu { height: 60px; padding: 0 12px; }
   #menu a { font-size: 18px; letter-spacing: 1px; }
@@ -635,12 +629,10 @@ input[type="range"]::-webkit-slider-thumb {
   #input { max-width: 220px; padding: 10px 14px 10px 40px; height: 44px; font-size: 16px; }
   #suggestions { max-width: 220px; font-size: 15px; left: 0; top: calc(100% + 6px); }
 
-  /* Hide the sidebar on small devices to free space */
   #side-bar { display: none; }
 
   .main-content { margin-left: 0; padding: 12px 12px 140px 12px; }
 
-  /* Stack covers vertically for narrow screens */
   .covers { flex-direction: column; align-items: center; gap: 18px; }
 
   .box, .box_01, .box_02, .box_03, .box_04, .box_05, .box_06, .box_07 {
@@ -664,7 +656,7 @@ input[type="range"]::-webkit-slider-thumb {
     background-position: center;
   }
 
-  /* Compact player */
+
   .music-player {
     width: 100%;
     left: 0;
@@ -679,7 +671,7 @@ input[type="range"]::-webkit-slider-thumb {
 
   input[type="range"] { width: 160px; }
 
-  /* Touch targets */
+
   .button-play { padding: 10px 14px; font-size: 16px; }
 }
 
@@ -691,7 +683,7 @@ input[type="range"]::-webkit-slider-thumb {
   .song-name { font-size: 12px; }
 }
 
-/* Hamburger & mobile menu behavior */
+
 #hamburger { display:none; background:transparent; border:none; color:#fff; font-size:24px; cursor:pointer }
 @media screen and (max-width:420px){
   #hamburger { display:block }
@@ -699,6 +691,6 @@ input[type="range"]::-webkit-slider-thumb {
   body.menu-open #menu a { display:block; width:100%; padding:10px 12px; background: rgba(0,0,0,0.2); margin-top:6px; }
 }
 
-/* Player playing state */
+
 .music-player { transition: transform 320ms ease, box-shadow 320ms ease; }
 .music-player.playing { transform: translateY(-6px) scale(1.01); box-shadow: 0 25px 60px rgba(0,216,255,0.06); }
