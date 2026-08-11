@@ -48,6 +48,40 @@ body { background: #05060a; color: #fff; font-family: Inter, system-ui, sans-ser
   #liked-container > div { width:45%; }
 }
 
+@media (max-width:480px) {
+  .main-content { margin: 12px; padding: 12px; }
+  .create-row { flex-direction: column; align-items: stretch }
+  #new-playlist { width: 100%; min-width: 0 }
+  #create-playlist { width: 100%; }
+
+  #playlists-container > div { padding: 12px; }
+  .playlist-items .item-row { flex-direction: column; align-items: flex-start }
+  .playlist-items img { width:100%; height:140px }
+
+  #liked-container > div { width:48%; }
+  #liked-container img { height:90px }
+
+  /* Make selects and buttons easier to tap */
+  #liked-container select, #liked-container button, .btn { width:100%; padding:12px }
+}
+
+@media (max-width:360px){
+  #liked-container > div { width:100%; }
+  .playlist-items img { height:120px }
+}
+
+/* Hamburger for playlist header */
+#hamburger { display:none; background:transparent; border:none; color:#fff; font-size:24px; cursor:pointer }
+@media (max-width:420px){
+  #hamburger { display:block }
+  #menu a { display:none }
+  body.menu-open #menu a { display:block; width:100%; padding:10px 12px; background: rgba(0,0,0,0.12); margin-top:6px; }
+}
+
+/* subtle entrance for cards */
+.playlist-items .item-row, #playlists-container > div, #liked-container > div { opacity:0; transform: translateY(10px) scale(.995); transition: opacity 380ms ease, transform 380ms cubic-bezier(.2,.9,.2,1); }
+.visible-on-load { opacity:1; transform:none }
+
 /* Toast container */
 #toast-container { position: fixed; right: 20px; bottom: 24px; display:flex; flex-direction:column; gap:8px; z-index:20000 }
 .toast { background: rgba(15,23,42,0.95); color:#fff; padding:10px 14px; border-radius:8px; box-shadow: 0 10px 30px rgba(2,6,23,0.6); transform: translateY(12px); opacity:0; transition: transform 220ms, opacity 220ms }

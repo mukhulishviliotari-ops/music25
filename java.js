@@ -124,4 +124,33 @@ document.addEventListener("DOMContentLoaded", () => {
     window.pauseMusic = () => {
         if (audio) audio.pause();
     };
+
+    // Mobile hamburger toggle and simple overlay
+    const hamburger = document.getElementById('hamburger');
+    const body = document.body;
+    if (hamburger) {
+        hamburger.style.display = '';
+        hamburger.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+        });
+    }
+
+    // Animate covers in with a slight stagger
+    const coverCards = Array.from(document.querySelectorAll('.covers > div'));
+    coverCards.forEach((card, i) => {
+        card.style.opacity = 0;
+        card.style.transform = 'translateY(14px) scale(0.99)';
+        setTimeout(() => {
+            card.style.transition = 'opacity 420ms ease, transform 420ms cubic-bezier(.2,.9,.2,1)';
+            card.style.opacity = 1;
+            card.style.transform = 'none';
+        }, 90 * i + 120);
+    });
+
+    // Player state animation
+    const player = document.querySelector('.music-player');
+    if (audio && player) {
+        audio.addEventListener('play', () => player.classList.add('playing'));
+        audio.addEventListener('pause', () => player.classList.remove('playing'));
+    }
 });

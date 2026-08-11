@@ -625,3 +625,80 @@ input[type="range"]::-webkit-slider-thumb {
     transform: scale(0.9);
   }
 }
+
+/* Enhanced small-device adjustments */
+@media screen and (max-width: 420px) {
+  #menu { height: 60px; padding: 0 12px; }
+  #menu a { font-size: 18px; letter-spacing: 1px; }
+
+  .InputContainer { max-width: 220px; }
+  #input { max-width: 220px; padding: 10px 14px 10px 40px; height: 44px; font-size: 16px; }
+  #suggestions { max-width: 220px; font-size: 15px; left: 0; top: calc(100% + 6px); }
+
+  /* Hide the sidebar on small devices to free space */
+  #side-bar { display: none; }
+
+  .main-content { margin-left: 0; padding: 12px 12px 140px 12px; }
+
+  /* Stack covers vertically for narrow screens */
+  .covers { flex-direction: column; align-items: center; gap: 18px; }
+
+  .box, .box_01, .box_02, .box_03, .box_04, .box_05, .box_06, .box_07 {
+    width: 92%;
+    height: auto;
+    margin: 0 !important;
+  }
+
+  .box .content,
+  .box_01 .content_01,
+  .box_02 .content_02,
+  .box_03 .content_03,
+  .box_04 .content_04,
+  .box_05 .content_05,
+  .box_06 .content_06,
+  .box_07 .content_07 {
+    width: 100%;
+    height: 220px;
+    padding: 16px 18px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Compact player */
+  .music-player {
+    width: 100%;
+    left: 0;
+    height: 88px;
+    padding: 8px 12px;
+    border-radius: 0;
+  }
+
+  .music-player img { width: 60px; height: 60px; margin-top: 0; }
+  .cover-name { font-size: 18px; }
+  .song-name { font-size: 13px; }
+
+  input[type="range"] { width: 160px; }
+
+  /* Touch targets */
+  .button-play { padding: 10px 14px; font-size: 16px; }
+}
+
+@media screen and (max-width: 360px) {
+  #menu a { font-size: 16px; }
+  #input { font-size: 15px; height: 42px; }
+  .box .content, .box_01 .content_01 { height: 200px; }
+  .cover-name { font-size: 16px; }
+  .song-name { font-size: 12px; }
+}
+
+/* Hamburger & mobile menu behavior */
+#hamburger { display:none; background:transparent; border:none; color:#fff; font-size:24px; cursor:pointer }
+@media screen and (max-width:420px){
+  #hamburger { display:block }
+  #menu a { display:none }
+  body.menu-open #menu a { display:block; width:100%; padding:10px 12px; background: rgba(0,0,0,0.2); margin-top:6px; }
+}
+
+/* Player playing state */
+.music-player { transition: transform 320ms ease, box-shadow 320ms ease; }
+.music-player.playing { transform: translateY(-6px) scale(1.01); box-shadow: 0 25px 60px rgba(0,216,255,0.06); }

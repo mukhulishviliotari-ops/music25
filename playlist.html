@@ -9,6 +9,7 @@
 </head>
 <body>
     <div id="menu">
+        <button id="hamburger" aria-label="Open menu" style="display:none;">☰</button>
         <a href="index.html">back</a>
         <a href="playlist.html">playlists</a>
         <div class="InputContainer"></div>
@@ -109,7 +110,15 @@
 
         // initial render
         renderPlaylists(); renderLiked();
-                renderRecommendations();
+        renderRecommendations();
+
+        // make elements visible with a small stagger
+        const toReveal = Array.from(document.querySelectorAll('#playlists-container > div, #liked-container > div, #recommendations-container > div'));
+        toReveal.forEach((el, i) => setTimeout(()=> el.classList.add('visible-on-load'), 80 * i));
+
+        // hamburger toggle
+        const hamb = document.getElementById('hamburger');
+        if(hamb){ hamb.style.display=''; hamb.addEventListener('click', ()=> document.body.classList.toggle('menu-open')); }
 
         function renderRecommendations(){
             const container = document.getElementById('recommendations-container');
