@@ -1,0 +1,54 @@
+/* Styles for playlist.html */
+:root{ --bg: #0f172a; --panel: rgba(255,255,255,0.03); --muted:#9ca3af; --accent:#00d8ff }
+body { background: #05060a; color: #fff; font-family: Inter, system-ui, sans-serif; }
+
+#menu { background: #071028; border-bottom:1px solid rgba(255,255,255,0.03); }
+
+.main-content { max-width: 1100px; margin: 24px auto; padding: 0 20px; }
+
+/* Page header */
+.main-content h1 { font-size: 28px; margin: 8px 0 18px; letter-spacing: -0.4px; }
+.main-content h2 { font-size: 18px; margin: 6px 0 12px; color:#dbeafe }
+
+/* Create playlist area */
+/* Create playlist area */
+.create-row { display:flex; gap:8px; align-items:center; margin-bottom:18px }
+#new-playlist { padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:#fff; box-shadow: 0 6px 18px rgba(2,6,23,0.6); min-width:240px }
+#create-playlist { padding:10px 14px; background:linear-gradient(90deg,var(--accent), #4f46e5); color:#071028; border:none; border-radius:10px; cursor:pointer; box-shadow: 0 8px 20px rgba(0,216,255,0.08); font-weight:700 }
+#create-playlist:hover { transform:translateY(-2px); }
+
+/* Playlists list */
+/* Playlists list */
+#playlists-container > div { margin-bottom:16px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; box-shadow: 0 8px 30px rgba(2,6,23,0.6); }
+#playlists-container strong { font-size:18px; }
+#playlists-container .pl-actions button { background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; cursor:pointer }
+
+.playlist-items { margin-top:10px }
+.playlist-items .item-row { display:flex; gap:12px; align-items:center; padding:8px 6px; border-radius:8px; transition:background 0.15s }
+.playlist-items .item-row:hover { background: rgba(255,255,255,0.02) }
+
+.btn { padding:8px 10px; border-radius:8px; border:none; cursor:pointer }
+.btn-danger { background: transparent; color: #fecaca; border:1px solid rgba(255,255,255,0.03) }
+.btn-primary { background: linear-gradient(90deg,var(--accent),#7c3aed); color:#071028 }
+
+/* Liked covers grid */
+#liked-container { display:flex; gap:12px; flex-wrap:wrap }
+#liked-container > div { width:180px; padding:12px; background:var(--panel); border-radius:12px; box-sizing:border-box; transition: transform 0.15s, box-shadow 0.15s }
+#liked-container > div:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(2,6,23,0.6) }
+#liked-container img { border-radius:8px; display:block; margin-bottom:8px; width:100%; height:110px; object-fit:cover }
+#liked-container select { width:100%; margin-top:8px; padding:8px; border-radius:8px; background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.03) }
+#liked-container button { margin-top:8px; width:100%; padding:8px; background:linear-gradient(90deg,var(--accent),#7c3aed); color:#071028; border:none; border-radius:8px; cursor:pointer }
+
+/* Playlist item rows */
+#playlists-container img { width:64px; height:64px; object-fit:cover; border-radius:6px }
+#playlists-container div > div { color:var(--muted); }
+
+@media (max-width:720px){
+  #liked-container { gap:8px }
+  #liked-container > div { width:45%; }
+}
+
+/* Toast container */
+#toast-container { position: fixed; right: 20px; bottom: 24px; display:flex; flex-direction:column; gap:8px; z-index:20000 }
+.toast { background: rgba(15,23,42,0.95); color:#fff; padding:10px 14px; border-radius:8px; box-shadow: 0 10px 30px rgba(2,6,23,0.6); transform: translateY(12px); opacity:0; transition: transform 220ms, opacity 220ms }
+.toast.visible { transform: translateY(0); opacity:1 }

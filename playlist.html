@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playlists</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="playlist.css">
+</head>
+<body>
+    <div id="menu">
+        <a href="index.html">back</a>
+        <a href="playlist.html">playlists</a>
+        <div class="InputContainer"></div>
+        <a href="index.html">discover</a>
+        <a href="index.html">favorites</a>
+    </div>
+
+    <div class="main-content" style="margin-left:20px;">
+        <h1 style="color:#fff;">Your Playlists</h1>
+
+        <section style="margin-bottom:20px; color:#fff;">
+            <label for="new-playlist" style="display:block; margin-bottom:6px;">Create playlist</label>
+            <input id="new-playlist" placeholder="Playlist name" />
+            <button id="create-playlist">Create</button>
+        </section>
+
+        <section>
+            <h2 style="color:#fff;">Playlists</h2>
+            <div id="playlists-container"></div>
+        </section>
+
+        <section style="margin-top:30px;">
+            <h2 style="color:#fff;">Liked Covers</h2>
+            <div id="liked-container" style="display:flex; gap:12px; flex-wrap:wrap;"></div>
+        </section>
+
+                <section style="margin-top:30px;">
+                    <h2 style="color:#fff;">Recommendations</h2>
+                    <div id="recommendations-container" style="display:flex; gap:12px; flex-wrap:wrap;"></div>
+                </section>
+    </div>
+
+    <script src="playlist.js"></script>
+    <script src="covers.js"></script>
+    <script>
+        function el(tag, props={}, ...children){ const e = document.createElement(tag); Object.assign(e, props); children.forEach(c=>{ if(typeof c === 'string') e.appendChild(document.createTextNode(c)); else if(c) e.appendChild(c); }); return e; }
+
+        function renderPlaylists(){
+            const container = document.getElementById('playlists-container');
+            container.innerHTML = '';
+            const pls = getPlaylists();
+            if(pls.length === 0){ container.appendChild(el('div', {}, 'No playlists yet')); return; }
+            pls.forEach(pl => {
+                const box = el('div', {style:'background:rgba(255,255,255,0.03); padding:12px; margin-bottom:12px; border-radius:6px; color:#fff;'});
+                const header = el('div', {style:'display:flex; justify-content:space-between; align-items:center;'});
+                header.appendChild(el('strong', {}, pl.name));
+                const del = el('button', {className:'btn btn-danger'}, 'Delete');
+                del.addEventListener('click', ()=>{ if(confirm('Delete playlist?')){ deletePlaylist(pl.id); showToast('Playlist deleted'); renderPlaylists(); } });
+                header.appendChild(del);
+                box.appendChild(header);
+
+                const list = el('div');
+                if(pl.items.length===0) list.appendChild(el('div', {}, 'Empty'));
+                pl.items.forEach(item => {
+                    const row = el('div', {style:'display:flex; gap:10px; align-items:center; margin-top:8px;'});
+                    const img = el('img', {src:item.cover || '', style:'width:64px; height:64px; object-fit:cover; border-radius:6px;'});
+                    row.appendChild(img);
+                    row.appendChild(el('div', {}, item.name));
+                    const rbtn = el('button', {className:'btn btn-danger'}, 'Remove');
+                    rbtn.addEventListener('click', ()=>{ removeCoverFromPlaylist(pl.id, item.id); showToast('Removed from playlist'); renderPlaylists(); });
+                    row.appendChild(rbtn);
+                    list.appendChild(row);
+                });
+                box.appendChild(list);
+                container.appendChild(box);
+            });
+        }
+
+        function renderLiked(){
+            const container = document.getElementById('liked-container');
+            container.innerHTML = '';
+            const liked = getLikedCovers();
+            const pls = getPlaylists();
+            if(liked.length===0) { container.appendChild(el('div', {style:'color:#fff;'}, 'No liked covers yet')); return; }
+            liked.forEach(item => {
+                const card = el('div', {style:'width:160px; background:rgba(255,255,255,0.03); padding:8px; border-radius:6px; color:#fff;'});
+                const img = el('img', {src:item.cover || '', style:'width:100%; height:100px; object-fit:cover; border-radius:4px;'});
+                card.appendChild(img);
+                card.appendChild(el('div', {}, item.name));
+                // playlist selector
+                const sel = el('select');
+                sel.appendChild(el('option', {value:''}, '-- add to playlist --'));
+                pls.forEach(p=> sel.appendChild(el('option', {value:p.id}, p.name)));
+                const addBtn = el('button', {className:'btn btn-primary'}, 'Add');
+                addBtn.addEventListener('click', ()=>{
+                    const pid = sel.value; if(!pid){ showToast('Choose a playlist'); return; }
+                    addCoverToPlaylist(pid, item); showToast('Added to playlist'); renderPlaylists();
+                });
+                card.appendChild(sel);
+                card.appendChild(addBtn);
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('create-playlist').addEventListener('click', ()=>{
+            const name = document.getElementById('new-playlist').value.trim(); if(!name) return showToast('Enter a name'); createPlaylist(name); document.getElementById('new-playlist').value=''; showToast('Playlist created'); renderPlaylists(); renderLiked();
+        });
+
+        // initial render
+        renderPlaylists(); renderLiked();
+                renderRecommendations();
+
+        function renderRecommendations(){
+            const container = document.getElementById('recommendations-container');
+            if(!window.ALL_COVERS) { container.innerHTML = '<div style="color:#fff">No recommendations available</div>'; return; }
+            container.innerHTML = '';
+            const pls = getPlaylists();
+            ALL_COVERS.forEach(item => {
+                const card = el('div', {style:'width:180px; padding:12px; background:rgba(255,255,255,0.03); border-radius:12px;'});
+                const img = el('img', {src:item.cover || '', style:'width:100%; height:110px; object-fit:cover; border-radius:8px;'});
+                card.appendChild(img);
+                card.appendChild(el('div', {style:'margin-top:8px; font-weight:600;'}, item.name));
+                const sel = el('select'); sel.appendChild(el('option',{value:''}, '-- add to playlist --'));
+                pls.forEach(p=> sel.appendChild(el('option',{value:p.id}, p.name)));
+                const addBtn = el('button', {className:'btn btn-primary'}, 'Add');
+                addBtn.addEventListener('click', ()=>{
+                    const pid = sel.value; if(!pid){ showToast('Choose a playlist'); return; }
+                    addCoverToPlaylist(pid, item); showToast('Added to playlist'); renderPlaylists();
+                });
+                card.appendChild(sel);
+                card.appendChild(addBtn);
+                container.appendChild(card);
+            });
+        }
+        renderRecommendations();
+
+        // Re-render when storage changes in other tabs
+        window.addEventListener('storage', ()=>{ renderPlaylists(); renderLiked(); });
+    </script>
+</body>
+</html>
