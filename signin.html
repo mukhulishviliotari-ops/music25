@@ -3,15 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music player</title>
+    <title>Music Player - Authentication</title>
     <style>
-        
+        /* Modern Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 210, 255, 0.6);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: url('jungle-tree-dark-3840x2160-22695.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Frosted Glass Navbar */
+        #menu {
+            width: 100%;
+            height: 80px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        #menu a {
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            transition: all 0.3s ease;
+        }
+
+        #menu a:hover {
+            color: #00d2ff;
+            transform: translateY(-2px);
+        }
+
+        /* Glassmorphism Card Container */
+        #container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;     
+            width: 380px;            
+            padding: 35px 30px;
+            box-sizing: border-box;
+            gap: 16px;              
+            background: rgba(10, 15, 25, 0.65); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            margin: auto;
+            transition: all 0.3s ease;
+        }
+
+        /* Back to Home Link */
+        .back-home {
+            align-self: flex-start;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .back-home:hover {
+            color: #00d2ff;
+        }
+
+        #header {
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 28px;
+            margin: 5px 0 10px 0;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Input Field Styling */
+        #container input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #container input::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        #container input:focus {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #00d2ff;
+            box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .toggle-box {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .toggle-btn {
+            color: #3a58b0;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-left: 4px;
+            transition: color 0.2s;
+        }
+
+        .toggle-btn:hover {
+            color: #ffffff;
+        }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
+
+    <div id="menu">
+        <button id="hamburger" aria-label="Open menu" style="display:none;">☰</button>
+        <a href="index.html">menu</a> 
+        <a href="playlist.html">playlists</a>
+        <a href="#">discover</a>
+        <a href="#">favorites</a>
+    </div>
+
+    <div id="container">
+
+        <a href="index.html" class="back-home">← Back to Home</a>
+
+        <h1 id="header">Sign-In</h1>
+
+        <input id="email" type="email" placeholder="Email Address">
+        <input id="password" type="password" placeholder="Password">
+
+        <input id="conf-password" class="hidden" type="password" placeholder="Confirm Password">
+
+
+        <button id="auth-btn" class="submit-btn">Sign In</button>
+
+
+        <div class="toggle-box">
+            <span id="toggle-text">Don't have an account?</span>
+            <span id="toggle-link" class="toggle-btn">Sign Up</span>
+        </div>
+    </div>
+
     <script>
+        const header = document.getElementById('header');
+        const authBtn = document.getElementById('auth-btn');
+        const confPassword = document.getElementById('conf-password');
+        const toggleText = document.getElementById('toggle-text');
+        const toggleLink = document.getElementById('toggle-link');
+
+        let isSignUp = false;
 
 
+        toggleLink.addEventListener('click', () => {
+            isSignUp = !isSignUp;
+
+            if (isSignUp) {
+                header.textContent = 'Sign-Up';
+                authBtn.textContent = 'Sign Up';
+                confPassword.classList.remove('hidden');
+                toggleText.textContent = 'Already have an account?';
+                toggleLink.textContent = 'Sign In';
+            } else {
+                header.textContent = 'Sign-In';
+                authBtn.textContent = 'Sign In';
+                confPassword.classList.add('hidden');
+                toggleText.textContent = "Don't have an account?";
+                toggleLink.textContent = 'Sign Up';
+            }
+        });
     </script>
 </body>
 </html>
