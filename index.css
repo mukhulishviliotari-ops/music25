@@ -252,7 +252,7 @@ background: linear-gradient(90deg, #00d8ff, #4f46e5);
 .covers:hover .box_05:not(:hover),
 .covers:hover .box_06:not(:hover),
 .covers:hover .box_07:not(:hover) { 
-  filter: blur(3px);
+  filter: blur(1px);
 }
 
 .covers .box:hover,
@@ -292,7 +292,7 @@ background: linear-gradient(90deg, #00d8ff, #4f46e5);
   height: 98%;
   border-radius: 8px;
   transform: skewX(10deg);
-  transition: 0.5s;
+  transition: 0.8s;
 }
 
 .box::before, .box::after { background: linear-gradient(315deg, #2563eb, #00d8ff); }
@@ -306,7 +306,7 @@ background: linear-gradient(90deg, #00d8ff, #4f46e5);
 
 .box::after, .box_01::after, .box_02::after, .box_03::after,
 .box_04::after, .box_05::after, .box_06::after, .box_07::after {
-  filter: blur(27px);
+  filter: blur(2px);
 }
 
 

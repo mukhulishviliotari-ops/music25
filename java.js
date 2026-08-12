@@ -154,3 +154,5 @@ document.addEventListener("DOMContentLoaded", () => {
         audio.addEventListener('pause', () => player.classList.remove('playing'));
     }
 });
+
+
