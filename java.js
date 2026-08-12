@@ -147,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 90 * i + 120);
     });
 
-    // Player state animation
     const player = document.querySelector('.music-player');
     if (audio && player) {
         audio.addEventListener('play', () => player.classList.add('playing'));
@@ -155,4 +154,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.15 
+  };
 
+  const observer = new IntersectionObserver((entries, observerInstance) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+
+        observerInstance.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const animatedElements = document.querySelectorAll(".scroll-fade");
+  animatedElements.forEach(el => observer.observe(el));
+});
