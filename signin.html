@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player - Authentication</title>
     <style>
-        /* Modern Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -37,7 +36,6 @@
             flex-direction: column;
         }
 
-        /* Frosted Glass Navbar */
         #menu {
             width: 100%;
             height: 80px;
@@ -70,7 +68,6 @@
             transform: translateY(-2px);
         }
 
-        /* Glassmorphism Card Container */
         #container {
             display: flex;
             flex-direction: column; 
@@ -78,7 +75,7 @@
             width: 380px;            
             padding: 35px 30px;
             box-sizing: border-box;
-            gap: 16px;              
+            gap: 14px;              
             background: rgba(10, 15, 25, 0.65); 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -89,7 +86,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Back to Home Link */
         .back-home {
             align-self: flex-start;
             text-decoration: none;
@@ -109,12 +105,36 @@
             color: white;
             font-family: 'Courier New', Courier, monospace;
             font-size: 28px;
-            margin: 5px 0 10px 0;
+            margin: 5px 0 5px 0;
             letter-spacing: 2px;
             text-align: center;
         }
 
-        /* Input Field Styling */
+        /* Message Box for Feedback */
+        #message-box {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            text-align: center;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        #message-box.error {
+            display: block;
+            background: rgba(255, 74, 74, 0.2);
+            border: 1px solid rgba(255, 74, 74, 0.5);
+            color: #ff8888;
+        }
+
+        #message-box.success {
+            display: block;
+            background: rgba(74, 255, 140, 0.2);
+            border: 1px solid rgba(74, 255, 140, 0.5);
+            color: #74ff8c;
+        }
+
         #container input {
             width: 100%;
             padding: 14px 16px;
@@ -148,7 +168,7 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 8px;
+            margin-top: 6px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -157,19 +177,15 @@
             box-shadow: 0 8px 20px rgba(0, 210, 255, 0.4);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
         .toggle-box {
             color: rgba(255, 255, 255, 0.65);
             font-size: 14px;
-            margin-top: 10px;
+            margin-top: 8px;
             text-align: center;
         }
 
         .toggle-btn {
-            color: #3a58b0;
+            color: #00d2ff;
             cursor: pointer;
             font-weight: bold;
             text-decoration: underline;
@@ -197,19 +213,18 @@
     </div>
 
     <div id="container">
-
         <a href="index.html" class="back-home">← Back to Home</a>
 
         <h1 id="header">Sign-In</h1>
 
+        <!-- Feedback alert box -->
+        <div id="message-box"></div>
+
         <input id="email" type="email" placeholder="Email Address">
         <input id="password" type="password" placeholder="Password">
-
         <input id="conf-password" class="hidden" type="password" placeholder="Confirm Password">
 
-
         <button id="auth-btn" class="submit-btn">Sign In</button>
-
 
         <div class="toggle-box">
             <span id="toggle-text">Don't have an account?</span>
@@ -220,28 +235,122 @@
     <script>
         const header = document.getElementById('header');
         const authBtn = document.getElementById('auth-btn');
-        const confPassword = document.getElementById('conf-password');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confPasswordInput = document.getElementById('conf-password');
         const toggleText = document.getElementById('toggle-text');
         const toggleLink = document.getElementById('toggle-link');
+        const messageBox = document.getElementById('message-box');
 
         let isSignUp = false;
 
+        // Show error or success messages
+        function showMessage(msg, type) {
+            messageBox.textContent = msg;
+            messageBox.className = type; // 'error' or 'success'
+        }
 
+        function clearMessage() {
+            messageBox.textContent = '';
+            messageBox.className = '';
+        }
+
+        // Email validation helper
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Toggle UI Mode
         toggleLink.addEventListener('click', () => {
             isSignUp = !isSignUp;
+            clearMessage();
+            emailInput.value = '';
+            passwordInput.value = '';
+            confPasswordInput.value = '';
 
             if (isSignUp) {
                 header.textContent = 'Sign-Up';
                 authBtn.textContent = 'Sign Up';
-                confPassword.classList.remove('hidden');
+                confPasswordInput.classList.remove('hidden');
                 toggleText.textContent = 'Already have an account?';
                 toggleLink.textContent = 'Sign In';
             } else {
                 header.textContent = 'Sign-In';
                 authBtn.textContent = 'Sign In';
-                confPassword.classList.add('hidden');
+                confPasswordInput.classList.add('hidden');
                 toggleText.textContent = "Don't have an account?";
                 toggleLink.textContent = 'Sign Up';
+            }
+        });
+
+        // Authentication Handler
+        authBtn.addEventListener('click', () => {
+            clearMessage();
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const confPassword = confPasswordInput.value.trim();
+
+            // 1. Basic Input Validations
+            if (!email || !password) {
+                showMessage('Please fill in all fields.', 'error');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Retrieve existing users database from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            if (isSignUp) {
+                // --- SIGN UP LOGIC ---
+                if (password.length < 6) {
+                    showMessage('Password must be at least 6 characters.', 'error');
+                    return;
+                }
+
+                if (password !== confPassword) {
+                    showMessage('Passwords do not match.', 'error');
+                    return;
+                }
+
+                const userExists = users.some(user => user.email === email);
+                if (userExists) {
+                    showMessage('An account with this email already exists.', 'error');
+                    return;
+                }
+
+                // Save new user
+                users.push({ email: email, password: password });
+                localStorage.setItem('users', JSON.stringify(users));
+
+                showMessage('Account created successfully! Switching to Sign-In...', 'success');
+
+                // Switch back to Sign-In mode automatically
+                setTimeout(() => {
+                    toggleLink.click();
+                    emailInput.value = email; // Pre-fill registered email
+                }, 1500);
+
+            } else {
+                // --- SIGN IN LOGIC ---
+                const existingUser = users.find(user => user.email === email && user.password === password);
+
+                if (existingUser) {
+                    // Store current logged in session
+                    localStorage.setItem('currentUser', JSON.stringify({ email: existingUser.email }));
+                    
+                    showMessage('Success! Redirecting to playlists...', 'success');
+
+                    setTimeout(() => {
+                        window.location.href = 'playlist.html';
+                    }, 1200);
+                } else {
+                    showMessage('Invalid email or password.', 'error');
+                }
             }
         });
     </script>
