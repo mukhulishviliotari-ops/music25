@@ -47,7 +47,7 @@ body::-webkit-scrollbar {
   transform: scale(1.05);
 }
 
-/* Search Bar */
+
 .InputContainer {
   position: relative;
   display: inline-block;
